@@ -10,16 +10,21 @@ const publicPath = path.join(__dirname,'../public');
 
 app.use(express.static(publicPath));
 
-let count = 0;
+
 io.on('connection',(socket)=>{
    console.log('New Connection');
    
-   socket.emit('countupdated',count);
-
-   socket.on('increment',()=>{
-       count++;
-       io.emit('countupdated',count);
+   socket.emit('message','Welcome');
+   socket.broadcast.emit('message','New User has Joined'); 
+   
+   socket.on('sendMessage',(message)=>{
+        io.emit('message',message);
    })
+
+   socket.on('disconnect',()=>{
+       io.emit('message','A User has left')
+   })
+   
 })
 server.listen(port,()=>{
     console.log(`Server is running on port: ${port}`)
