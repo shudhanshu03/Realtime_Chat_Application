@@ -17,9 +17,15 @@ io.on('connection',(socket)=>{
    socket.emit('message','Welcome');
    socket.broadcast.emit('message','New User has Joined'); 
    
-   socket.on('sendMessage',(message)=>{
+   socket.on('sendMessage',(message,callback)=>{
         io.emit('message',message);
+        callback('Delivered');
    })
+
+   socket.on('sendLocation',(coords,callback)=>{
+        io.emit('locationMessage',`https://google.com/maps?q=${coords.lat},${coords.long}`)
+        callback();
+    })
 
    socket.on('disconnect',()=>{
        io.emit('message','A User has left')
