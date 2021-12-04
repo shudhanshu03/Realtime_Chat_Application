@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const {generateMessage} = require('./utilities/message')
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server)
@@ -14,11 +15,11 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
    console.log('New Connection');
    
-   socket.emit('message','Welcome');
-   socket.broadcast.emit('message','New User has Joined'); 
+   socket.emit('message',generateMessage('Welcome to this Chat Application'));
+   socket.broadcast.emit('message',generateMessage('New User has Joined')); 
    
    socket.on('sendMessage',(message,callback)=>{
-        io.emit('message',message);
+        io.emit('message',generateMessage(message));
         callback('Delivered');
    })
 
@@ -28,7 +29,7 @@ io.on('connection',(socket)=>{
     })
 
    socket.on('disconnect',()=>{
-       io.emit('message','A User has left')
+       io.emit('message',generateMessage('A User has left'))
    })
    
 })
