@@ -9,25 +9,43 @@
     <link rel="icon" href="./img/favicon.png">
 </head>
 <body>
+   <div class="chat">
+      <div class="chat__sidebar">
 
-
-    <div id="messages"></div>
-    <form id="message-form">
-        <input name="message" placeholder="Message">
-        <button>Send</button>
+      </div>
+      <div class="chat__main">
+        <div id="messages" class="chat__messages"></div>
+         <div class="compose">
+            <form id="message-form">
+                <input name="message" placeholder="Message">
+                <button>Send</button>
+                
+            </form>
         
-    </form>
+            <button id="send-location">Send Location</button>
+         </div>
+        
+      </div>
+   </div>
 
-    <button id="send-location">Send Location</button>
+    
     <script id="message-template" type="text/html">
-     <div>
-      <p>{{createdAt}} - {{message}}</p>   
+     <div class="message">
+      <p>
+          <span class="message__name">Shudhanshu</span>
+          <span class="message__meta">{{createdAt}}</span>
+      </p>
+      <p>{{message}}</p>   
      </div>
     </script>
 
     <script id="location-message-template" type="text/html">
-     <div>
-      <p>{{createdAt}} - <a href="{{url}}" target="_blank">My Current Location</a></p>   
+     <div class="message">
+        <p>
+            <span class="message__name">Shudhanshu</span>
+            <span class="message__meta">{{createdAt}}</span>
+        </p>
+      <p><a href="{{url}}" target="_blank">My Current Location</a></p>   
      </div>
     </script>
 
