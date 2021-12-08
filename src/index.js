@@ -15,9 +15,15 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
    console.log('New Connection');
    
-   socket.emit('message',generateMessage('Welcome to this Chat Application'));
-   socket.broadcast.emit('message',generateMessage('New User has Joined')); 
    
+   socket.on('join',(username,room)=>{
+       socket.join(room)
+
+       socket.emit('message',generateMessage('Welcome to this Chat Application'));
+       socket.broadcast.to(room).emit('message',generateMessage(`${username} has joined`)); 
+
+   })
+
    socket.on('sendMessage',(message,callback)=>{
         io.emit('message',generateMessage(message));
         callback('Delivered');
