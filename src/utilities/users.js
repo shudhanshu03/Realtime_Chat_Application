@@ -39,16 +39,12 @@ const removeUser  = (id) =>{
 }
 
 const getUser = (id)=>{
-  const getuser = users.find((user)=>{
-      return user.id===id
-  })
+  return users.find((user)=>user.id===id)
 
 }
 const getUserInRoom = (room)=>{
     room = room.trim().toLowerCase();
-    const getuser = users.filter((user)=>{
-        return user.room===room
-    })
+    return users.filter((user)=> user.room===room)
   
   }
 
@@ -58,3 +54,4 @@ const getUserInRoom = (room)=>{
       getUser,
       getUserInRoom
   }
+
