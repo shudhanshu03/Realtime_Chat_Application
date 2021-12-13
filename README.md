@@ -1,1 +1,1 @@
-Its a Realtime Desktop Chat Application made using Node.js and Socket.io . tried to replicate the features of Discord in it by adding room feature so that multiple user can chat in their respective rooms , even user can send the live location too.
+Its a Realtime Desktop Chat Application made using Node.js and Socket.io. Tried to replicate the features of Discord in it by adding room feature so that multiple user can chat in their respective rooms , even user can send the live location too.
